@@ -71,7 +71,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: black;
+    color: var(--dark-grayiesh-blue);
     font-size: 1.15rem;
     margin: 1em;
     position: relative;

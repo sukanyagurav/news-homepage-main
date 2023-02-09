@@ -116,6 +116,7 @@ main {
     grid-column: 2/3;
     color: var(--dark-grayiesh-blue);
     line-height: 1.5;
+    animation: fadeIn 1.2s both;
 }
 
 .news__content .btn {
@@ -143,6 +144,7 @@ aside {
 aside h2 {
     font-size: 3rem;
     color: var(--soft-orange);
+    animation: bounce 1.5s both infinite; 
 }
 
 .new__news {
@@ -151,6 +153,7 @@ aside h2 {
 
 .new__news ul li {
     padding: 1.8rem 0;
+    animation: fadeIn 1.2s both;
 }
 
 .new__news ul li:not(:last-child) {
@@ -183,6 +186,7 @@ aside h2 {
     font-size: 1rem;
     opacity: 0.75;
     line-height: 1.5;
+    
 }
 
 .top3_news {
@@ -190,7 +194,7 @@ aside h2 {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 4rem 1.5rem;
     gap: 2rem;
-    animation: fromBottom 0.9s ease-in;
+   
 }
 
 
@@ -198,8 +202,15 @@ aside h2 {
     display: grid;
     grid-template-columns: 130px 1fr;
     gap: 1.5rem;
+    --delay:0.8s;
+    animation: fromBottom 0.9s both;
 }
-
+.news2{
+    animation-delay:calc(var(--delay) * 1.3);
+}
+.news3{
+    animation-delay:calc(var(--delay) * 2);
+}
 .top3_news_description {
     display: grid;
     gap: 0.4rem;
@@ -210,7 +221,7 @@ aside h2 {
     color: var(--grayiesh-blue);
 }
 
-.top3_news_description h2+a {
+.top3_news_description h2 + a {
     font-weight: 800;
     font-size: 1.2rem;
 }
@@ -229,7 +240,18 @@ footer{
 footer a{
     color:#fff;
 }
-
+.backdrop{
+    position: fixed;
+    display: block;
+    left:0;
+    top:0;
+    width: 100%;
+    height:100%;
+    z-index: 998;
+    background-color: rgba(0,0,0,0.85);
+    cursor:default;
+    display: none;
+}
 /************* ANIMATION ************/
 @keyframes fromBottom {
     0%{
@@ -244,6 +266,21 @@ footer a{
         transform: translateY(0);
     }
 }
+
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+        
+    }
+    100%{
+        opacity: 1;
+    }
+  }
 /* MEDIA Queries */
 @media (max-width:850px) {
 
@@ -296,7 +333,7 @@ footer a{
         width: 250px;
         height: 100vh;
         background-color: var(--dark-blue);
-        z-index: 5;
+        z-index: 1000;
         padding: 2rem;
         transition: all .3s ease-in-out;
 
@@ -335,7 +372,7 @@ footer a{
         border-radius: 50%;
         top: 1.3rem;
         right: 1.5rem;
-        z-index: 30;
+        z-index: 1001;
         text-align: center;
     }
 
@@ -394,6 +431,10 @@ footer a{
     .menu__checkbox:checked~nav {
         right: 0;
     }
+
+    .menu__checkbox:checked ~ .backdrop{
+        display: block;
+    }
 }
 
 @media (max-width:650px) {
@@ -404,7 +445,5 @@ footer a{
     br {
         content: ' ';
     }
-    br:after {
-        content: ' ';
-    }
+ 
 }
